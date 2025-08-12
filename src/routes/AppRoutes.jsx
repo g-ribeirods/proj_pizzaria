@@ -1,34 +1,26 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Login } from '../pages/Login.jsx';
-import { Cardapio } from '../pages/Cardapio.jsx';
-import { Cozinha } from '../pages/Cozinha.jsx';
-import { Entregas } from '../pages/Entregas.jsx';
-import { Admin } from '../pages/Admin.jsx';
-import { NotFound } from '../pages/NotFound.jsx';
-import { AdminLayout } from '../components/AdminLayout.jsx';
-import { ProtectedRoute } from './ProtectedRoute.jsx';
+import { Login } from '../pages/Login';
+import { Cardapio } from '../pages/Cardapio';
+import { Cozinha } from '../pages/Cozinha';
+import { Entregas } from '../pages/Entregas';
+import { Admin } from '../pages/Admin';
+import { NotFound } from '../pages/NotFound';
+import { AdminLayout } from '../components/AdminLayout';
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-
-        {/* Rotas acessíveis para clientes e admins logados */}
-        <Route element={<ProtectedRoute />}>
+        
+        {/* Rotas com Sidebar */}
+        <Route element={<AdminLayout />}>
           <Route path="/cardapio" element={<Cardapio />} />
           <Route path="/cozinha" element={<Cozinha />} />
           <Route path="/entregas" element={<Entregas />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
-
-        {/* Rotas restritas apenas para admin */}
-        <Route element={<ProtectedRoute requiredRole="admin" />}>
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Admin />} />
-            {/* outras rotas administrativas */}
-          </Route>
-        </Route>
-
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

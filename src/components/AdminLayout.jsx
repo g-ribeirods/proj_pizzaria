@@ -1,8 +1,7 @@
+// AdminLayout.jsx
 import styled from 'styled-components';
 import { Sidebar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -11,23 +10,18 @@ const LayoutContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
-  margin-left: 250px; // Largura do sidebar
+  margin-left: 250px;
   padding: 2rem;
-  background-color: #f9f9f9;
+  max-width: calc(100vw - 250px); // Garante que não ultrapasse a largura disponível
+  overflow-x: hidden; // Previne barras de rolagem horizontais
 `;
 
 export function AdminLayout() {
-  const { user } = useContext(AuthContext);
-
-  if (!user || user.role !== 'admin') {
-    return <Navigate to="/" replace />;
-  }
-
   return (
     <LayoutContainer>
-      <Sidebar />
+      <Sidebar /> {/* Única instância da Sidebar */}
       <MainContent>
-        <Outlet />
+        <Outlet /> {/* Aqui serão renderizadas as páginas */}
       </MainContent>
     </LayoutContainer>
   );

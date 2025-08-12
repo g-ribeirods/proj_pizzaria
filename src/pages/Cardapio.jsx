@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 import { ProductCarousel } from '../components/ProductCarousel';
 
-const Container = styled.div`
+const Content = styled.div`
   padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
 `;
 
 const Title = styled.h1`
@@ -100,28 +98,12 @@ export function Cardapio() {
   ];
 
   return (
-    <Container>
+    <Content>
       <Title>Cardápio</Title>
-      
-      <ProductCarousel 
-        title="Pizzas" 
-        items={pizzas} 
-      />
-      
-      <ProductCarousel 
-        title="Bebidas" 
-        items={bebidas} 
-      />
-      
-      <ProductCarousel 
-        title="Sobremesas" 
-        items={sobremesas} 
-      />
-      
-      <ProductCarousel 
-        title="Adicionais" 
-        items={adicionais} 
-      />
-    </Container>
+      <ProductCarousel title="Pizzas" items={pizzas} />
+      <ProductCarousel title="Bebidas" items={bebidas} />
+      <ProductCarousel title="Sobremesas" items={sobremesas} />
+      <ProductCarousel title="Adicionais" items={adicionais} />
+    </Content>
   );
 }

@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const CarouselContainer = styled.div`
   margin: 2rem 0;
+  width: 100%;
 `;
 
 const SectionTitle = styled.h2`
@@ -17,13 +18,18 @@ const ProductCard = styled.div`
   background: white;
   border-radius: 8px;
   padding: 1rem;
-  margin: 0 0.5rem;
+  margin: 0 10px; // Aumentei a margem lateral
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  height: 250px;
+  height: 280px; // Aumentei a altura
   display: flex!important;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const ProductImage = styled.div`
@@ -68,7 +74,15 @@ export function ProductCarousel({ title, items }) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    centerMode: false,
+    focusOnSelect: true,
+    initialSlide: 0,
+    arrows: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    
     responsive: [
+  
       {
         breakpoint: 1024,
         settings: {
@@ -81,6 +95,7 @@ export function ProductCarousel({ title, items }) {
           slidesToShow: 2,
         }
       },
+      
       {
         breakpoint: 480,
         settings: {

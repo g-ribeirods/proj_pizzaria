@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
-const PageContainer = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+const Content = styled.div`
+  padding: 2rem;
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: #d32f2f;
   margin-bottom: 2rem;
 `;
 
 export function Entregas() {
   return (
-    <PageContainer>
+    <Content>
       <Title>Entregas</Title>
       <p>Controle das entregas em andamento.</p>
-    </PageContainer>
+    </Content>
   );
 }
