@@ -43,7 +43,31 @@ export function Cardapio() {
       description: "Presunto, mussarela, ovo, cebola e azeitonas",
       price: 56.90,
       image: "https://img.freepik.com/fotos-gratis/pizza-portuguesa_140725-101.jpg"
-    }
+    },
+    {
+      name: "Atum",
+      description: "Atum, mussarela, ovo, cebola e azeitonas",
+      price: 56.90,
+      image: "https://img.freepik.com/fotos-gratis/pizza-portuguesa_140725-101.jpg"
+    },
+    {
+      name: "Milho Verde",
+      description: "Milho, mussarela, ovo, cebola e azeitonas",
+      price: 56.90,
+      image: "https://img.freepik.com/fotos-gratis/pizza-portuguesa_140725-101.jpg"
+    },
+    {
+      name: "À moda da casa",
+      description: "Milho, mussarela, ovo, cebola e azeitonas",
+      price: 56.90,
+      image: "https://img.freepik.com/fotos-gratis/pizza-portuguesa_140725-101.jpg"
+    },
+    {
+      name: "Mista",
+      description: "Milho, mussarela, ovo, cebola e azeitonas",
+      price: 56.90,
+      image: "https://img.freepik.com/fotos-gratis/pizza-portuguesa_140725-101.jpg"
+    },
   ];
 
   const bebidas = [
@@ -64,6 +88,30 @@ export function Cardapio() {
       description: "Garrafa 500ml",
       price: 4.50,
       image: "https://img.freepik.com/fotos-gratis/garrafa-de-agua_140725-263.jpg"
+    },
+    {
+      name: "Suco de Laranja",
+      description: "Garrafa 500ml",
+      price: 4.50,
+      image: "https://img.freepik.com/fotos-gratis/garrafa-de-agua_140725-263.jpg"
+    },
+    {
+      name: "Suco de Uva",
+      description: "Garrafa 500ml",
+      price: 4.50,
+      image: "https://img.freepik.com/fotos-gratis/garrafa-de-agua_140725-263.jpg"
+    },
+    {
+      name: "Suco de Cupuaçu",
+      description: "Garrafa 500ml",
+      price: 4.50,
+      image: "https://img.freepik.com/fotos-gratis/garrafa-de-agua_140725-263.jpg"
+    },
+    {
+      name: "Suco de Maracujá",
+      description: "Garrafa 500ml",
+      price: 4.50,
+      image: "https://img.freepik.com/fotos-gratis/garrafa-de-agua_140725-263.jpg"
     }
   ];
 
@@ -79,12 +127,36 @@ export function Cardapio() {
       description: "Com sorvete de baunilha",
       price: 18.90,
       image: "https://img.freepik.com/fotos-gratis/sobremesa-de-chocolate-com-sorvete_23-2147740329.jpg"
-    }
+    },
+    {
+      name: "Cheesecake",
+      description: "Cheesecake",
+      price: 18.90,
+      image: "https://img.freepik.com/fotos-gratis/sobremesa-de-chocolate-com-sorvete_23-2147740329.jpg"
+    },
+    {
+      name: "Torta Mousse de Chocolate",
+      description: "Cheesecake",
+      price: 18.90,
+      image: "https://img.freepik.com/fotos-gratis/sobremesa-de-chocolate-com-sorvete_23-2147740329.jpg"
+    },
+    {
+      name: "Churros Recheado",
+      description: "Churros Recheados",
+      price: 18.90,
+      image: "https://img.freepik.com/fotos-gratis/sobremesa-de-chocolate-com-sorvete_23-2147740329.jpg"
+    },
+    {
+      name: "Cookie Recheado",
+      description: "Churros Recheados",
+      price: 18.90,
+      image: "https://img.freepik.com/fotos-gratis/sobremesa-de-chocolate-com-sorvete_23-2147740329.jpg"
+    },
   ];
 
   const adicionais = [
     {
-      name: "Borda Recheada",
+      name: "Borda de Catupiry",
       description: "Borda de catupiry",
       price: 8.90,
       image: "https://img.freepik.com/fotos-gratis/fatia-de-pizza-com-borda-recheada_23-2147740355.jpg"
@@ -94,7 +166,37 @@ export function Cardapio() {
       description: "Molho de tomate",
       price: 3.50,
       image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
-    }
+    },
+    {
+      name: "Borda de Chocolate",
+      description: "Borda de Chocolate",
+      price: 3.50,
+      image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
+    },
+    {
+      name: "Borda de 4 Queijos",
+      description: "Borda de 4 Queijos",
+      price: 3.50,
+      image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
+    },
+    {
+      name: "Borda Doce de Leite",
+      description: "Borda Doce de Leite",
+      price: 3.50,
+      image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
+    },
+    {
+      name: "Borda Bacon com Catupiry",
+      description: "Borda Bacon com Catupiry",
+      price: 3.50,
+      image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
+    },
+    {
+      name: "Borda Cream Cheese",
+      description: "Borda Cream Cheese",
+      price: 3.50,
+      image: "https://img.freepik.com/fotos-gratis/molho-de-tomate-em-um-prato-branco_23-2147740351.jpg"
+    },
   ];
 
   return (
