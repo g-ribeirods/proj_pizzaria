@@ -14,7 +14,7 @@ const Title = styled.h1`
 `;
 
 export function Cardapio() {
-  // Dados de exemplo - você pode substituir por uma API depois
+  
   const pizzas = [
     {
       name: "Margherita",

@@ -16,7 +16,7 @@ export function Admin() {
     <Container>
       <Title>Painel Administrativo</Title>
       <p>Área restrita para administradores</p>
-      {/* Aqui você adicionará os controles administrativos depois */}
+      {/* Adicionar os controles administrativos depois */}
     </Container>
   );
 }

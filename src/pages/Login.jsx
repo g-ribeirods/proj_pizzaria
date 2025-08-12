@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginContainer = styled.div`
   display: flex;
@@ -76,22 +77,25 @@ export function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!username || !password) {
       setError('Por favor, preencha todos os campos');
       return;
     }
 
-    // Verificação simples
+    // Mock de autenticação com usuário e senha fixos
     if (username === 'admin' && password === 'admin123') {
-      // Credenciais de admin - redireciona para área administrativa
+      login({ username, role: 'admin' });
       navigate('/admin');
-    } else {
-      // Credenciais de cliente - redireciona para área comum
+    } else if (username === 'cliente' && password === 'cliente123') {
+      login({ username, role: 'cliente' });
       navigate('/cardapio');
+    } else {
+      setError('Usuário ou senha inválidos');
     }
   };
 
@@ -127,5 +131,6 @@ export function Login() {
         {error && <ErrorMessage>{error}</ErrorMessage>}
       </LoginForm>
     </LoginContainer>
+
   );
 }
