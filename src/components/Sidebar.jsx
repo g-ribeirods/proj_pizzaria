@@ -56,6 +56,9 @@ export function Sidebar() {
           <MenuLink to="/cardapio">Cardápio</MenuLink>
         </MenuItem>
         <MenuItem>
+          <MenuLink to="/carrinho">Carrinho</MenuLink> {/* Novo link */}
+        </MenuItem>
+        <MenuItem>
           <MenuLink to="/cozinha">Cozinha</MenuLink>
         </MenuItem>
         <MenuItem>

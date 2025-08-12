@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useCart } from '../context/CartContext';
 
 const CarouselContainer = styled.div`
   margin: 2rem 0;
@@ -68,6 +69,7 @@ const AddButton = styled.button`
 `;
 
 export function ProductCarousel({ title, items }) {
+  const { addToCart } = useCart();
   const settings = {
     dots: true,
     infinite: true,
@@ -116,7 +118,7 @@ export function ProductCarousel({ title, items }) {
             <p>{item.description}</p>
             <div>
               <ProductPrice>R$ {item.price.toFixed(2)}</ProductPrice>
-              <AddButton>Adicionar</AddButton>
+              <AddButton onClick={() => addToCart(item)}>Adicionar</AddButton>
             </div>
           </ProductCard>
         ))}

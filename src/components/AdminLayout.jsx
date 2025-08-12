@@ -2,6 +2,7 @@
 import styled from 'styled-components';
 import { Sidebar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
+import { Cart } from './Cart'; // Adicione esta importação
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const LayoutContainer = styled.div`
 const MainContent = styled.main`
   flex: 1;
   margin-left: 250px;
-  padding: 2rem;
+  padding: 2rem;    
   max-width: calc(100vw - 250px); // Garante que não ultrapasse a largura disponível
   overflow-x: hidden; // Previne barras de rolagem horizontais
 `;

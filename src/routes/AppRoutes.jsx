@@ -6,6 +6,7 @@ import { Entregas } from '../pages/Entregas';
 import { Admin } from '../pages/Admin';
 import { NotFound } from '../pages/NotFound';
 import { AdminLayout } from '../components/AdminLayout';
+import { Carrinho } from '../pages/Carrinho';
 
 export function AppRoutes() {
   return (
@@ -13,9 +14,9 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<Login />} />
         
-        {/* Rotas com Sidebar */}
         <Route element={<AdminLayout />}>
           <Route path="/cardapio" element={<Cardapio />} />
+          <Route path="/carrinho" element={<Carrinho />} /> {/* Nova rota */}
           <Route path="/cozinha" element={<Cozinha />} />
           <Route path="/entregas" element={<Entregas />} />
           <Route path="/admin" element={<Admin />} />
