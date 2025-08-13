@@ -53,6 +53,8 @@ export function Entregas() {
               <strong>Data:</strong> {pedido.data}
             </p>
 
+            <p><strong>Mesa/Endereço:</strong> {pedido.mesaOuEndereco}</p>
+
             {pedido.itens.map((item, i) => (
               <p key={i}>{item.quantity}x {item.name}</p>
             ))}

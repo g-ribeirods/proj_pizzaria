@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { usePedidos } from '../context/PedidosContext';
 import { toast } from 'react-toastify';
@@ -77,6 +78,14 @@ const TotalContainer = styled.div`
   text-align: right;
 `;
 
+const Input = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+`;
+
 const Button = styled.button`
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
@@ -101,21 +110,32 @@ export function Carrinho() {
 
   const { adicionarPedido } = usePedidos();
 
+  const [mesaOuEndereco, setMesaOuEndereco] = useState('');
+
   const finalizarPedido = () => {
     if (cartItems.length === 0) {
       toast.error("Carrinho vazio!");
       return;
     }
 
+    if (!mesaOuEndereco.trim()) {
+      toast.error("Informe o número da mesa ou endereço!");
+      return;
+    }
+
     const novoPedido = {
-      itens: [...cartItems], // Cria uma cópia dos itens
+      itens: [...cartItems],
       total,
-      data: new Date().toISOString(), // Formato mais consistente para datas
+      data: new Date().toISOString(),
+      mesaOuEndereco,
+      entregueOuServido: false,
       status: "pendente"
     };
 
+
     adicionarPedido(novoPedido);
     clearCart(); // Zera o carrinho
+    setMesaOuEndereco('');
     toast.success("Pedido enviado para a cozinha!");
     // clearCart(); // Descomente se quiser limpar o carrinho após o pedido
   };
@@ -144,7 +164,14 @@ export function Carrinho() {
               </RemoveButton>
             </CartItem>
           ))}
-          
+
+          <Input
+            type="text"
+            placeholder="Número da mesa ou endereço"
+            value={mesaOuEndereco}
+            onChange={(e) => setMesaOuEndereco(e.target.value)}
+          />
+
           <TotalContainer>
             <p>Total: R$ {total.toFixed(2)}</p>
           </TotalContainer>

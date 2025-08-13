@@ -1,4 +1,3 @@
-// src/context/PedidosContext.jsx
 import { createContext, useState, useContext } from "react";
 
 const PedidosContext = createContext();
@@ -8,13 +7,7 @@ export function PedidosProvider({ children }) {
   const [pedidosEntrega, setPedidosEntrega] = useState([]);
 
   const adicionarPedido = (pedido) => {
-    // Adiciona campos de status
-    const novoPedido = {
-      ...pedido,
-      entregue: false,
-      servido: false,
-    };
-    setPedidosPreparacao((prev) => [...prev, novoPedido]);
+    setPedidosPreparacao((prev) => [...prev, pedido]);
   };
 
   const marcarPedidoPronto = (index) => {
@@ -38,7 +31,7 @@ export function PedidosProvider({ children }) {
         pedidosEntrega,
         adicionarPedido,
         marcarPedidoPronto,
-        marcarComoEntregueOuServido,
+        marcarComoEntregueOuServido
       }}
     >
       {children}
