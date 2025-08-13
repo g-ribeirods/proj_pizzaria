@@ -115,6 +115,7 @@ export function Carrinho() {
     };
 
     adicionarPedido(novoPedido);
+    clearCart(); // Zera o carrinho
     toast.success("Pedido enviado para a cozinha!");
     // clearCart(); // Descomente se quiser limpar o carrinho após o pedido
   };
