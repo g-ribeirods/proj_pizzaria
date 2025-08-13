@@ -3,6 +3,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useCart } from '../context/CartContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CarouselContainer = styled.div`
   margin: 2rem 0;
@@ -70,6 +72,19 @@ const AddButton = styled.button`
 
 export function ProductCarousel({ title, items }) {
   const { addToCart } = useCart();
+
+  const handleAddToCart = (item) => {
+    addToCart(item);
+    toast.success(`${item.name} adicionado ao carrinho!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -118,7 +133,7 @@ export function ProductCarousel({ title, items }) {
             <p>{item.description}</p>
             <div>
               <ProductPrice>R$ {item.price.toFixed(2)}</ProductPrice>
-              <AddButton onClick={() => addToCart(item)}>Adicionar</AddButton>
+              <AddButton onClick={() => handleAddToCart(item)}>Adicionar</AddButton>
             </div>
           </ProductCard>
         ))}
