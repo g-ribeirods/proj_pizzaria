@@ -89,8 +89,16 @@ const Button = styled.button`
 `;
 
 export function Carrinho() {
-  const { cartItems, total, increaseQuantity, decreaseQuantity, removeItem } = useCart();
-  const { cartItems, total } = useCart();
+  // Corrija a desestruturação (use apenas uma chamada de useCart)
+  const { 
+    cartItems, 
+    total, 
+    increaseQuantity, 
+    decreaseQuantity, 
+    removeItem,
+    clearCart // Adicione esta função ao seu CartContext se quiser limpar o carrinho após o pedido
+  } = useCart();
+
   const { adicionarPedido } = usePedidos();
 
   const finalizarPedido = () => {
@@ -98,12 +106,17 @@ export function Carrinho() {
       toast.error("Carrinho vazio!");
       return;
     }
+
     const novoPedido = {
-      itens: cartItems,
-      data: new Date().toLocaleString(),
+      itens: [...cartItems], // Cria uma cópia dos itens
+      total,
+      data: new Date().toISOString(), // Formato mais consistente para datas
+      status: "pendente"
     };
+
     adicionarPedido(novoPedido);
     toast.success("Pedido enviado para a cozinha!");
+    // clearCart(); // Descomente se quiser limpar o carrinho após o pedido
   };
 
   return (
