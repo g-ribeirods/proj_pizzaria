@@ -8,13 +8,27 @@ export function PedidosProvider({ children }) {
   const [pedidosEntrega, setPedidosEntrega] = useState([]);
 
   const adicionarPedido = (pedido) => {
-    setPedidosPreparacao((prev) => [...prev, pedido]);
+    // Adiciona campos de status
+    const novoPedido = {
+      ...pedido,
+      entregue: false,
+      servido: false,
+    };
+    setPedidosPreparacao((prev) => [...prev, novoPedido]);
   };
 
   const marcarPedidoPronto = (index) => {
     const pedidoPronto = pedidosPreparacao[index];
     setPedidosPreparacao((prev) => prev.filter((_, i) => i !== index));
     setPedidosEntrega((prev) => [...prev, pedidoPronto]);
+  };
+
+  const marcarComoEntregueOuServido = (index) => {
+    setPedidosEntrega((prev) =>
+      prev.map((pedido, i) =>
+        i === index ? { ...pedido, entregueOuServido: true } : pedido
+      )
+    );
   };
 
   return (
@@ -24,6 +38,7 @@ export function PedidosProvider({ children }) {
         pedidosEntrega,
         adicionarPedido,
         marcarPedidoPronto,
+        marcarComoEntregueOuServido,
       }}
     >
       {children}

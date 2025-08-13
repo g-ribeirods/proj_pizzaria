@@ -17,8 +17,19 @@ const PedidoCard = styled.div`
   border-radius: 6px;
 `;
 
+const Button = styled.button`
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
 export function Entregas() {
-  const { pedidosEntrega } = usePedidos();
+  const { pedidosEntrega, marcarComoEntregueOuServido } = usePedidos();
 
   return (
     <Content>
@@ -29,10 +40,33 @@ export function Entregas() {
       ) : (
         pedidosEntrega.map((pedido, index) => (
           <PedidoCard key={index}>
-            <p><strong>Data:</strong> {pedido.data}</p>
+            <p>
+              <span
+                style={{
+                  color: pedido.entregueOuServido ? 'green' : 'red',
+                  marginRight: '0.5rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                ●
+              </span>
+              <strong>Data:</strong> {pedido.data}
+            </p>
+
             {pedido.itens.map((item, i) => (
               <p key={i}>{item.quantity}x {item.name}</p>
             ))}
+
+            {!pedido.entregueOuServido && (
+              <>
+                <Button onClick={() => marcarComoEntregueOuServido(index)}>
+                  Servido
+                </Button>
+                <Button onClick={() => marcarComoEntregueOuServido(index)}>
+                  Entregue
+                </Button>
+              </>
+            )}
           </PedidoCard>
         ))
       )}
