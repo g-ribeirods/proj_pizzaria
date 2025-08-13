@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { useCart } from '../context/CartContext';
+import { usePedidos } from '../context/PedidosContext';
+import { toast } from 'react-toastify';
+
 
 const Container = styled.div`
   padding: 2rem;
@@ -29,8 +32,33 @@ const TotalContainer = styled.div`
   text-align: right;
 `;
 
+const Button = styled.button`
+  margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  background: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+`;
+
 export function Carrinho() {
   const { cartItems, total } = useCart();
+  const { adicionarPedido } = usePedidos();
+
+  const finalizarPedido = () => {
+    if (cartItems.length === 0) {
+      toast.error("Carrinho vazio!");
+      return;
+    }
+    const novoPedido = {
+      itens: cartItems,
+      data: new Date().toLocaleString(),
+    };
+    adicionarPedido(novoPedido);
+    toast.success("Pedido enviado para a cozinha!");
+  };
 
   return (
     <Container>
@@ -55,6 +83,8 @@ export function Carrinho() {
           <TotalContainer>
             <p>Total: R$ {total.toFixed(2)}</p>
           </TotalContainer>
+
+          <Button onClick={finalizarPedido}>Finalizar Pedido</Button>
         </>
       )}
     </Container>
