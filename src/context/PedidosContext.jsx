@@ -1,25 +1,52 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 const PedidosContext = createContext();
 
 export function PedidosProvider({ children }) {
-  const [pedidosPreparacao, setPedidosPreparacao] = useState([]);
-  const [pedidosEntrega, setPedidosEntrega] = useState([]);
+  // Carrega os pedidos do localStorage ao inicializar
+  const [pedidos, setPedidos] = useState(() => {
+    const saved = localStorage.getItem('pizzaria-pedidos');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // Atualiza localStorage sempre que pedidos mudam
+  useEffect(() => {
+    localStorage.setItem('pizzaria-pedidos', JSON.stringify(pedidos));
+  }, [pedidos]);
+
+  // Pedidos em preparação (status: 'preparacao')
+  const pedidosPreparacao = pedidos.filter(pedido => 
+    pedido.status === 'preparacao' && !pedido.entregueOuServido
+  );
+
+  // Pedidos prontos para entrega (status: 'entrega')
+  const pedidosEntrega = pedidos.filter(pedido => 
+    pedido.status === 'entrega' && !pedido.entregueOuServido
+  );
 
   const adicionarPedido = (pedido) => {
-    setPedidosPreparacao((prev) => [...prev, pedido]);
+    const novoPedido = {
+      ...pedido,
+      status: 'preparacao', // Status inicial
+      id: Date.now(), // ID único
+      data: new Date().toLocaleString('pt-BR') // Data formatada
+    };
+    
+    setPedidos(prev => [...prev, novoPedido]);
   };
 
-  const marcarPedidoPronto = (index) => {
-    const pedidoPronto = pedidosPreparacao[index];
-    setPedidosPreparacao((prev) => prev.filter((_, i) => i !== index));
-    setPedidosEntrega((prev) => [...prev, pedidoPronto]);
+  const marcarPedidoPronto = (id) => {
+    setPedidos(prev =>
+      prev.map(pedido =>
+        pedido.id === id ? { ...pedido, status: 'entrega' } : pedido
+      )
+    );
   };
 
-  const marcarComoEntregueOuServido = (index) => {
-    setPedidosEntrega((prev) =>
-      prev.map((pedido, i) =>
-        i === index ? { ...pedido, entregueOuServido: true } : pedido
+  const marcarComoEntregueOuServido = (id) => {
+    setPedidos(prev =>
+      prev.map(pedido =>
+        pedido.id === id ? { ...pedido, entregueOuServido: true } : pedido
       )
     );
   };
@@ -27,6 +54,7 @@ export function PedidosProvider({ children }) {
   return (
     <PedidosContext.Provider
       value={{
+        pedidos,
         pedidosPreparacao,
         pedidosEntrega,
         adicionarPedido,
@@ -40,5 +68,9 @@ export function PedidosProvider({ children }) {
 }
 
 export function usePedidos() {
-  return useContext(PedidosContext);
+  const context = useContext(PedidosContext);
+  if (!context) {
+    throw new Error('usePedidos deve ser usado dentro de um PedidosProvider');
+  }
+  return context;
 }

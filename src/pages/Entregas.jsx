@@ -61,11 +61,8 @@ export function Entregas() {
 
             {!pedido.entregueOuServido && (
               <>
-                <Button onClick={() => marcarComoEntregueOuServido(index)}>
-                  Servido
-                </Button>
-                <Button onClick={() => marcarComoEntregueOuServido(index)}>
-                  Entregue
+                <Button onClick={() => marcarComoEntregueOuServido(pedido.id)}>
+                  Servido/Entregue
                 </Button>
               </>
             )}

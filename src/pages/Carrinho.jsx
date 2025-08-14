@@ -116,29 +116,27 @@ export function Carrinho() {
     if (cartItems.length === 0) {
       toast.error("Carrinho vazio!");
       return;
-    }
+   }
 
     if (!mesaOuEndereco.trim()) {
-      toast.error("Informe o número da mesa ou endereço!");
-      return;
+     toast.error("Informe o número da mesa ou endereço!");
+     return;
     }
 
-    const novoPedido = {
-      itens: [...cartItems],
-      total,
-      data: new Date().toISOString(),
-      mesaOuEndereco,
-      entregueOuServido: false,
-      status: "pendente"
-    };
-
-
-    adicionarPedido(novoPedido);
-    clearCart(); // Zera o carrinho
-    setMesaOuEndereco('');
-    toast.success("Pedido enviado para a cozinha!");
-    // clearCart(); // Descomente se quiser limpar o carrinho após o pedido
+  const novoPedido = {
+    itens: [...cartItems],
+    total,
+    data: new Date().toLocaleString(), // Formato mais legível
+    mesaOuEndereco,
+    entregueOuServido: false,
+    status: "preparacao" // Status inicial
   };
+
+  adicionarPedido(novoPedido);
+  clearCart();
+  setMesaOuEndereco('');
+  toast.success("Pedido enviado para a cozinha!");
+};
 
   return (
     <Container>
