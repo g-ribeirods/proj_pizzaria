@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SidebarContainer = styled.div`
   width: 250px;
@@ -10,6 +11,8 @@ const SidebarContainer = styled.div`
   position: fixed;
   padding: 1rem;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
 `;
 
 const Logo = styled.div`
@@ -24,6 +27,7 @@ const Logo = styled.div`
 const MenuList = styled.ul`
   list-style: none;
   padding: 0;
+  flex-grow: 1;
 `;
 
 const MenuItem = styled.li`
@@ -48,8 +52,33 @@ const MenuLink = styled(NavLink)`
   }
 `;
 
+const LogoutButton = styled.button`
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: auto;
+  margin-bottom: 1rem;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
 export function Sidebar() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <SidebarContainer>
@@ -76,6 +105,8 @@ export function Sidebar() {
           </>
         )}
       </MenuList>
+      
+      <LogoutButton onClick={handleLogout}>Sair</LogoutButton>
     </SidebarContainer>
   );
 }
