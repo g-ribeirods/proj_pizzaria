@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { ProductCarousel } from '../components/ProductCarousel';
 import cardapioData from '../data/cardapio.json'; // Ajuste o caminho conforme sua estrutura
+import { useContext } from 'react';
+import { MenuContext } from '../context/MenuContext';
 
 const Content = styled.div`
   padding: 2rem;
@@ -13,7 +15,8 @@ const Title = styled.h1`
 `;
 
 export function Cardapio() {
-  const { pizzas, bebidas, sobremesas, adicionais } = cardapioData;
+  const { cardapio } = useContext(MenuContext);
+  const { pizzas = [], bebidas = [], sobremesas = [], adicionais = [] } = cardapio;
 
   return (
     <Content>
