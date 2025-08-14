@@ -36,15 +36,15 @@ export function Cozinha() {
       {pedidosPreparacao.length === 0 ? (
         <p>Nenhum pedido em preparação</p>
       ) : (
-        pedidosPreparacao.map((pedido) => ( // Removi o index desnecessário
-          <PedidoCard key={pedido.id}> {/* Use o id como key */}
+        pedidosPreparacao.map((pedido) => ( 
+          <PedidoCard key={pedido.id}>
             <p><strong>Mesa/Endereço:</strong> {pedido.mesaOuEndereco}</p>
             <p><strong>Data:</strong> {pedido.data}</p>
             {pedido.itens.map((item, i) => (
               <p key={i}>{item.quantity}x {item.name}</p>
             ))}
             <p><strong>Total:</strong> R$ {pedido.total.toFixed(2)}</p>
-            <Button onClick={() => marcarPedidoPronto(pedido.id)}> {/* CORRETO - usando pedido.id */}
+            <Button onClick={() => marcarPedidoPronto(pedido.id)}>
               Pedido pronto
             </Button>
           </PedidoCard>

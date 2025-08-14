@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ProductCarousel } from '../components/ProductCarousel';
-import cardapioData from '../data/cardapio.json'; // Ajuste o caminho conforme sua estrutura
+import cardapioData from '../data/cardapio.json';
 import { useContext } from 'react';
 import { MenuContext } from '../context/MenuContext';
 

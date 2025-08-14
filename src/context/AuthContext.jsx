@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
   );
 }
 
-// Hook personalizado para facilitar o uso do contexto
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) {

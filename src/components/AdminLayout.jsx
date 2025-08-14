@@ -1,8 +1,7 @@
-// AdminLayout.jsx
 import styled from 'styled-components';
 import { Sidebar } from './Sidebar';
 import { Outlet } from 'react-router-dom';
-import { Cart } from './Cart'; // Adicione esta importação
+import { Cart } from './Cart'; 
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -20,9 +19,9 @@ const MainContent = styled.main`
 export function AdminLayout() {
   return (
     <LayoutContainer>
-      <Sidebar /> {/* Única instância da Sidebar */}
+      <Sidebar /> 
       <MainContent>
-        <Outlet /> {/* Aqui serão renderizadas as páginas */}
+        <Outlet /> 
       </MainContent>
     </LayoutContainer>
   );

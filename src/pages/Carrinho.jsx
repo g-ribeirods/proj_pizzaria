@@ -98,14 +98,13 @@ const Button = styled.button`
 `;
 
 export function Carrinho() {
-  // Corrija a desestruturação (use apenas uma chamada de useCart)
   const { 
     cartItems, 
     total, 
     increaseQuantity, 
     decreaseQuantity, 
     removeItem,
-    clearCart // Adicione esta função ao seu CartContext se quiser limpar o carrinho após o pedido
+    clearCart 
   } = useCart();
 
   const { adicionarPedido } = usePedidos();
@@ -126,10 +125,10 @@ export function Carrinho() {
   const novoPedido = {
     itens: [...cartItems],
     total,
-    data: new Date().toLocaleString(), // Formato mais legível
+    data: new Date().toLocaleString(),
     mesaOuEndereco,
     entregueOuServido: false,
-    status: "preparacao" // Status inicial
+    status: "preparacao"
   };
 
   adicionarPedido(novoPedido);

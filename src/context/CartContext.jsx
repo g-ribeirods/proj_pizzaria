@@ -5,7 +5,6 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
 
-  // Adiciona item ao carrinho
   const addToCart = (product) => {
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(item => item.name === product.name);
@@ -22,7 +21,6 @@ export function CartProvider({ children }) {
     });
   };
 
-  // Aumenta a quantidade de um item
   const increaseQuantity = (productName) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
@@ -33,7 +31,6 @@ export function CartProvider({ children }) {
     );
   };
 
-  // Diminui a quantidade de um item (mínimo 1)
   const decreaseQuantity = (productName) => {
     setCartItems(prevItems =>
       prevItems.map(item =>
@@ -44,17 +41,14 @@ export function CartProvider({ children }) {
     );
   };
 
-  // Remove um item do carrinho
   const removeItem = (productName) => {
     setCartItems(prevItems =>
       prevItems.filter(item => item.name !== productName)
     );
   };
 
-  // Limpa todo o carrinho
   const clearCart = () => setCartItems([]);
 
-  // Total acumulado
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -75,7 +69,6 @@ export function CartProvider({ children }) {
   );
 }
 
-// Hook para usar o contexto
 export function useCart() {
   return useContext(CartContext);
 }

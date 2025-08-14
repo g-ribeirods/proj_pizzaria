@@ -87,15 +87,13 @@ const handleSubmit = (e) => {
     return;
   }
 
-  // Credenciais específicas para admin
   if (username === 'admin' && password === 'admin123') {
     login({ username, role: 'admin' });
     navigate('/admin');
     return;
   }
 
-  // Qualquer outra combinação válida será cliente
-  if (username && password) { // Verificação básica de preenchimento
+  if (username && password) {
     login({ username, role: 'cliente' });
     navigate('/cardapio');
   } else {

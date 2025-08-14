@@ -95,7 +95,7 @@ export function Admin() {
   };
 
 const handleSubmit = (e) => {
-  e.preventDefault(); // Mantenha apenas um
+  e.preventDefault();
   const pizzaCompleta = {
     ...novaPizza,
     price: parseFloat(novaPizza.price)
