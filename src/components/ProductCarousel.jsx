@@ -24,7 +24,7 @@ const ProductCard = styled.div`
   margin: 0 10px; // Aumentei a margem lateral
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
-  height: 280px; // Aumentei a altura
+  height: 330px; // Aumentei a altura
   display: flex!important;
   flex-direction: column;
   justify-content: space-between;
@@ -36,7 +36,7 @@ const ProductCard = styled.div`
 `;
 
 const ProductImage = styled.div`
-  height: 120px;
+  height: 150px;
   background-color: #f5f5f5;
   border-radius: 4px;
   margin-bottom: 0.5rem;
