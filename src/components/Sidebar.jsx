@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const SidebarContainer = styled.div`
   width: 250px;
@@ -48,25 +49,32 @@ const MenuLink = styled(NavLink)`
 `;
 
 export function Sidebar() {
+  const { user } = useAuth();
+
   return (
     <SidebarContainer>
-      <Logo>Pizzaria Admin</Logo>
+      <Logo>Pizzaria {user?.role === 'admin' ? 'Admin' : ''}</Logo>
       <MenuList>
         <MenuItem>
           <MenuLink to="/cardapio">Cardápio</MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="/carrinho">Carrinho</MenuLink> {/* Novo link */}
+          <MenuLink to="/carrinho">Carrinho</MenuLink>
         </MenuItem>
-        <MenuItem>
-          <MenuLink to="/cozinha">Cozinha</MenuLink>
-        </MenuItem>
-        <MenuItem>
-          <MenuLink to="/entregas">Entregas</MenuLink>
-        </MenuItem>
-        <MenuItem>
-          <MenuLink to="/admin">Administrador</MenuLink>
-        </MenuItem>
+        
+        {user?.role === 'admin' && (
+          <>
+            <MenuItem>
+              <MenuLink to="/cozinha">Cozinha</MenuLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuLink to="/entregas">Entregas</MenuLink>
+            </MenuItem>
+            <MenuItem>
+              <MenuLink to="/admin">Administrador</MenuLink>
+            </MenuItem>
+          </>
+        )}
       </MenuList>
     </SidebarContainer>
   );

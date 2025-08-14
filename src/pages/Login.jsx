@@ -79,25 +79,29 @@ export function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!username || !password) {
-      setError('Por favor, preencha todos os campos');
-      return;
-    }
+  if (!username || !password) {
+    setError('Por favor, preencha todos os campos');
+    return;
+  }
 
-    // Mock de autenticação com usuário e senha fixos
-    if (username === 'admin' && password === 'admin123') {
-      login({ username, role: 'admin' });
-      navigate('/admin');
-    } else if (username === 'cliente' && password === 'cliente123') {
-      login({ username, role: 'cliente' });
-      navigate('/cardapio');
-    } else {
-      setError('Usuário ou senha inválidos');
-    }
-  };
+  // Credenciais específicas para admin
+  if (username === 'admin' && password === 'admin123') {
+    login({ username, role: 'admin' });
+    navigate('/admin');
+    return;
+  }
+
+  // Qualquer outra combinação válida será cliente
+  if (username && password) { // Verificação básica de preenchimento
+    login({ username, role: 'cliente' });
+    navigate('/cardapio');
+  } else {
+    setError('Credenciais inválidas');
+  }
+};
 
   return (
     <LoginContainer>
