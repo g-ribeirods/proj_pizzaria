@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom'; // Adicione Navigate
 import { Login } from '../pages/Login';
 import { Cardapio } from '../pages/Cardapio';
 import { Carrinho } from '../pages/Carrinho';
@@ -12,6 +12,9 @@ import { AdminLayout } from '../components/AdminLayout';
 export function AppRoutes() {
   return (
     <Routes>
+      {/* Rota padrão redireciona para login */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      
       {/* Rota pública */}
       <Route path="/login" element={<Login />} />
       
@@ -28,9 +31,6 @@ export function AppRoutes() {
             <Route path="/entregas" element={<Entregas />} />
             <Route path="/admin" element={<Admin />} />
           </Route>
-          
-          {/* Rota padrão */}
-          <Route index element={<Cardapio />} />
         </Route>
       </Route>
       
